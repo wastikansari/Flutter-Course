@@ -5,7 +5,7 @@ void main() {
     Center(
       child:  Text(
         'Hello Flutter',
-        textDirection: TextDirection.ltr,git
+        textDirection: TextDirection.ltr,
         style: TextStyle(fontSize: 40.0),
       ),
     )
