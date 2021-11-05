@@ -10,7 +10,16 @@ class homepage extends StatelessWidget {
         height: 150.0,
         width: 350.0,
         margin: EdgeInsets.only(right: 30.0, bottom: 400.0, left: 30.0),
-        child: Text("Application"),
+        child: Text("Application",
+        style: TextStyle(
+          decoration: TextDecoration.none,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
+          color: Colors.black
+
+        ),
+        ),
       ),
     );
   }
