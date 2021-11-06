@@ -5,7 +5,7 @@ class homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        padding: EdgeInsets.only(left: 20.0,top: 55.0, right: 20.0),
+          padding: EdgeInsets.only(left: 20.0, top: 55.0, right: 20.0),
           alignment: Alignment.center,
           color: Colors.amberAccent,
           child: Column(
@@ -16,7 +16,7 @@ class homepage extends StatelessWidget {
                     child: Text(
                       "Name",
                       style: TextStyle(
-                        fontSize: 30.0,
+                          fontSize: 30.0,
                           decoration: TextDecoration.none,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.bold,
@@ -52,7 +52,6 @@ class homepage extends StatelessWidget {
                           color: Colors.black),
                     ),
                   ),
-
                   Expanded(
                     child: Text(
                       "Kanpur",
@@ -67,8 +66,8 @@ class homepage extends StatelessWidget {
                   ),
                 ],
               ),
-              UsingImage()
-
+              UsingImage(),
+              HomeBookButton(),
             ],
           )),
     );
@@ -76,13 +75,54 @@ class homepage extends StatelessWidget {
 }
 
 class UsingImage extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     AssetImage assetImage = AssetImage('Assets/house.png');
     Image image = Image(image: assetImage);
-    return Container(child: image,width: 750,height: 400,);
-
+    return Container(
+      child: image,
+      width: 750,
+      height: 400,
+    );
   }
+}
+
+class HomeBookButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 55.0,
+      width: 250,
+      child: RaisedButton(
+        elevation: 6.0,
+        color: Colors.white,
+        child: Text(
+          'Book Home',
+          style: TextStyle(
+            fontSize: 25.0,
+            fontFamily: 'Regular',
+          ),
+        ),
+        onPressed: () {
+          BookMessage(context);
+        },
+      ),
+    );
+  }
+}
+
+void BookMessage (BuildContext context){
+
+  var alertDialog = AlertDialog(
+    elevation: 5.0,
+    title: Text('Book Home Successfully'),
+    content: Text('Enjoy your New HOME'),
+  );
+
+  showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return alertDialog;
+
+  });
 }
