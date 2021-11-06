@@ -67,8 +67,22 @@ class homepage extends StatelessWidget {
                   ),
                 ],
               ),
+              UsingImage()
+
             ],
           )),
     );
+  }
+}
+
+class UsingImage extends StatelessWidget {
+
+
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('Assets/house.png');
+    Image image = Image(image: assetImage);
+    return Container(child: image,width: 750,height: 400,);
+
   }
 }
