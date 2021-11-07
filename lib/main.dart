@@ -1,51 +1,35 @@
+
 import 'package:flutter/material.dart';
 
-void main(){
+void main() {
   runApp(MaterialApp(
-    title: " Exploring UI",
-    home:Scaffold(
-      appBar: AppBar(title: Text("Basic List View"),),
-      body: GetListView(),
-    ) ,
-  )
-  );
+    title: "Exploring UI",
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text('Long List'),
+      ),
+       body: GetListView()
+    ),
+  ));
 }
 
-Widget GetListView (){
+List<String> GetListElement() {
+  var items = List<String>.generate(100, (Counter) => "Item $Counter");
+  return items;
+}
 
-  var listView = ListView(
-    children: <Widget>[
-      ListTile(
-        leading: Icon(Icons.person),
-        title: Text("Person"),
-        subtitle: Text("View"),
-        trailing: Icon(Icons.wb_auto),
-        onTap: (){
-          debugPrint("tapp");
+Widget GetListView() {
+  var listItem = GetListElement();
 
-        },
-
-      ),
-      ListTile(
-        leading: Icon(Icons.desktop_windows),
-        title: Text("Laptop"),
-        subtitle: Text("use"),
-        trailing: Icon(Icons.wb_auto),
-
-      ),
-      ListTile(
-        leading: Icon(Icons.add_call),
-        title: Text("Call Me"),
-        subtitle: Text("Information"),
-        trailing: Icon(Icons.wb_auto),
-
-      ),
-
-      Text("Insert Element in List"),
-      Container(color: Colors.greenAccent,height: 50.0,)
-
-
-    ],
+  var listView = ListView.builder(itemBuilder: (context, index) {
+    return ListTile(
+      leading: Icon(Icons.arrow_forward_rounded),
+      title: Text(listItem[index]),
+      onTap: (){
+        debugPrint('${listItem[index]} was tapped');
+      },
+    );
+  }
   );
   return listView;
 }
