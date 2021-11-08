@@ -2,61 +2,50 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: "Exploring UI",
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text('Long List'),
-      ),
-      body:  GetListView(),
-      floatingActionButton: FloatingActionButton.extended(
-       elevation: 20.0,
-
-          label: const Text("Add"),
-          icon: const Icon(Icons.add),
-          tooltip: 'Add One More Item',
-          onPressed: () {
-            debugPrint('Tapp');
-          }),
-    ),
+    title: 'TextInput',
+    home: FavoriteFood(),
   ));
 }
 
-List<String> GetListElement() {
-  var items = List<String>.generate(100, (Counter) => "Item $Counter");
-  return items;
+class FavoriteFood extends StatefulWidget {
+  @override
+  _FavoriteFoodState createState() => _FavoriteFoodState();
 }
 
-Widget GetListView() {
-  var listItem = GetListElement();
+class _FavoriteFoodState extends State<FavoriteFood> {
+  String FoodName = "";
 
-  var listView = ListView.builder(
-      itemBuilder: (context, index) {
-    return ListTile(
-      leading: Icon(Icons.add_outlined),
-      title: Text(listItem[index]),
-      onTap: () {
-      //  debugPrint('${listItem[index]} was tapped');
-      SnackBarMessage(context,listItem[index]);
-      },
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Using Stateful Input'),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: TextField(
+                onChanged: (String userInput) {
+                  setState(() {
+                    FoodName = userInput;
+                  });
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                "Your Favorite Foods is $FoodName",
+                style: TextStyle(fontSize: 20.0),
+              ),
+            )
+          ],
+        ),
+      ),
     );
-  });
-  return listView;
-}
-
-
-// SnackBar to show a message in bottom
-
-void SnackBarMessage(BuildContext context, String listItem) {
-
-  var snackBar = SnackBar(
-      content: Text("You just tapped $listItem"),
-    action: SnackBarAction(
-      label: "UNDO",
-      onPressed: (){
-        debugPrint('Performing dummy UNDO operation');
-      },
-    ),
-
-  );
-  Scaffold.of(context).showSnackBar(snackBar);
+  }
 }
