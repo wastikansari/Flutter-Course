@@ -14,6 +14,8 @@ class FavoriteFood extends StatefulWidget {
 
 class _FavoriteFoodState extends State<FavoriteFood> {
   String FoodName = "";
+  var _FoodDeliveryCompany = ['Zomato', 'Swiggy', 'Dominos', 'Uber Eats'];
+  var _currentItemSelected = "Dominos";
 
 
   @override
@@ -36,6 +38,21 @@ class _FavoriteFoodState extends State<FavoriteFood> {
                 },
               ),
             ),
+            DropdownButton<String>(
+              items: _FoodDeliveryCompany.map((String dropDownStringItem) {
+                return DropdownMenuItem<String>(
+                  value: dropDownStringItem,
+                  child: Text(dropDownStringItem),
+                );
+              }).toList(),
+              onChanged: (String newValueSelected) {
+                //your code execute, when a menu item is selected from drop down
+                setState(() {
+                  this._currentItemSelected = newValueSelected;
+                });
+              },
+              value: _currentItemSelected,
+            ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
@@ -48,4 +65,5 @@ class _FavoriteFoodState extends State<FavoriteFood> {
       ),
     );
   }
+
 }
